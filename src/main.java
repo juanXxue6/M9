@@ -33,7 +33,7 @@ public class main {
     class ExecutaFil implements Runnable {
         @Override
         public void run() {
-        	//Mostrem les dades
+        	//Mostrem les dades del programa
             Calendar calendario = new GregorianCalendar();
             System.out.println("Hora execució tasca: "+
                 calendario.get(Calendar.HOUR_OF_DAY) + ":" +
