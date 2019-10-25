@@ -13,12 +13,15 @@ public class main {
     Calendar calendario = new GregorianCalendar();
     System.out.println("Inici: "+ calendario.get(Calendar.HOUR_OF_DAY) + ":" + calendario.get(Calendar.MINUTE) +
         ":" + calendario.get(Calendar.SECOND));
-    // Crea un pool de 2 fils
-    final ScheduledExecutorService schExService = Executors.newScheduledThreadPool(2);
+    // Cmabiamos de 2 a 4 hilos
+    final ScheduledExecutorService schExService = Executors.newScheduledThreadPool(4);
     // Crea objecte Runnable.
     final Runnable ob = new main().new ExecutaFil();
-    // Programa Fil, s’inicia als 2 segons i després es va executant cada 3 segons
-    schExService.scheduleWithFixedDelay(ob, 2, 3, TimeUnit.SECONDS);
+    
+    // programamos el hilo, poniendo que la primera vez que se ejecute lo haga a los 5 segundos, 
+    //y despues lo hace cada seis segundos 
+    
+    schExService.scheduleWithFixedDelay(ob, 5, 6, TimeUnit.SECONDS);
     // Espera per acabar 10 segons
     schExService.awaitTermination(10, TimeUnit.SECONDS);
     // shutdown .
