@@ -22,9 +22,9 @@ public class main {
     //y despues lo hace cada seis segundos 
     
     schExService.scheduleWithFixedDelay(ob, 5, 6, TimeUnit.SECONDS);
-    // Espera per acabar 10 segons
-    schExService.awaitTermination(10, TimeUnit.SECONDS);
-    // shutdown .
+    //Espera 8 segons per acabar
+    schExService.awaitTermination(8, TimeUnit.SECONDS);
+    //tanquem el executor.
     schExService.shutdownNow();
     System.out.println("Completat");
     }
@@ -33,6 +33,7 @@ public class main {
     class ExecutaFil implements Runnable {
         @Override
         public void run() {
+        	//Mostrem les dades
             Calendar calendario = new GregorianCalendar();
             System.out.println("Hora execució tasca: "+
                 calendario.get(Calendar.HOUR_OF_DAY) + ":" +
