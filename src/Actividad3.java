@@ -10,7 +10,7 @@ public class Actividad3 extends RecursiveTask<Long> {
 
 	@Override
 	protected Long compute() {
-		// ATENCIO **1** double calcul = java.lang.Math.cos(54879854);
+		 double calcul = java.lang.Math.cos(54879854);
 		if (numero <= 1)
 			return numero;
 		Actividad3 fib1 = new Actividad3(numero - 1);
@@ -21,7 +21,7 @@ public class Actividad3 extends RecursiveTask<Long> {
 	}
 
 	public static long calculaFibonacci(long numero) {
-		//double calcul = java.lang.Math.cos(54879854);
+		double calcul = java.lang.Math.cos(54879854);
 		if (numero == 0) {
 			return 0;
 		} else if (numero == 1) {
@@ -35,12 +35,12 @@ public class Actividad3 extends RecursiveTask<Long> {
 		long timePool = System.currentTimeMillis();
 		long timeMetode = System.currentTimeMillis();
 		ForkJoinPool pool = new ForkJoinPool();
-		int number = 35;
-		System.out.println("Hem utilitzat el n�mero " + number);
+		int number = 10;
+		System.out.println("Hem utilitzat el numero " + number);
 		System.out.println("Calculat:  "
 				+ pool.invoke(new Actividad3(number)));
 		System.out.println("Temps utilitzat: " + (System.currentTimeMillis() - timePool));
-		System.out.println("Calculat m�tode: " + calculaFibonacci(number));
+		System.out.println("Calculat metode: " + calculaFibonacci(number));
 		System.out.println("Temps utilitzat: " + (System.currentTimeMillis() - timeMetode));
 	}
 }
