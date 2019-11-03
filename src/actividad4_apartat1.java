@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.concurrent.*;
 
-public class act4 {
+public class actividad4_apartat1 {
 
 	static class Caixer implements Runnable {
 		//Un cop dintre la classe, iniciem l'array amb el que tarden els articles i definim el númeor de client
