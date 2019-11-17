@@ -1,3 +1,5 @@
+package activitat7;
+
 import java.awt.*;
 import java.util.*;
 
@@ -7,6 +9,8 @@ import java.awt.event.*;
 
 public class NauEspaial extends javax.swing.JFrame {
 
+ThreadGroup shots = new ThreadGroup("parent shot group");
+	 
 	public NauEspaial() {
 		initComponents();
 	}
@@ -50,6 +54,9 @@ public class NauEspaial extends javax.swing.JFrame {
 }
 
 class PanelNau extends JPanel implements Runnable, KeyListener {
+	
+
+	
 	private int numNaus = 10;
 	Nau[] nau;
 	Nau nauPropia;
@@ -76,7 +83,7 @@ class PanelNau extends JPanel implements Runnable, KeyListener {
 		nauPropia = new Nau("NauNostra", 200, 450, 0, 0, 100);
 
 		// Creo fil per anar pintant cada 0,1 segons el joc per pantalla
-		Thread n = new Thread(this);
+		Thread n = new Thread( this);
 		n.start();
 
 		// Creo listeners per a que el fil principal del programa gestioni
@@ -187,7 +194,7 @@ class PanelNau extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
-	public void matarNave() throws InterruptedException {
+	public  void matarNave() throws InterruptedException {
 		double proximidad;
 		int xNave;
 		int xDisparo;
@@ -215,10 +222,9 @@ class PanelNau extends JPanel implements Runnable, KeyListener {
 						shots[j] = null;
 						
 						for (int f = 0; f < nau.length; f++) {
-							if(nau[f] != null){
-
-							} else {
+							if(nau[f] == null){
 								contadorFinalGame++;
+
 							}
 							
 							if(contadorFinalGame == nau.length){
@@ -235,6 +241,7 @@ class PanelNau extends JPanel implements Runnable, KeyListener {
 }
 
 class Shot extends Thread {
+	ThreadGroup shots  = new ThreadGroup("parent shots group");
 	private int x;
 	private int y;
 	private int v;
@@ -251,10 +258,13 @@ class Shot extends Thread {
 
 		image = new ImageIcon(Nau.class.getResource("red_shot.png")).getImage();
 
-		Thread t = new Thread(this);
+		Thread t = new Thread(shots, this);
 		t.start();
 	}
 
+
+	
+	
 	public void run() {
 		while (seguir) {
 			// System.out.println("Movent nau numero " + this.nomNau);
@@ -297,6 +307,7 @@ class Shot extends Thread {
 }
 
 class Nau extends Thread {
+	ThreadGroup naus  = new ThreadGroup("parent nau group");
 	private String nomNau;
 	private int x, y;
 	private int dsx, dsy, v;
@@ -321,7 +332,7 @@ class Nau extends Thread {
 			image = new ImageIcon(Nau.class.getResource("ufo.png")).getImage();
 		}
 
-		Thread t = new Thread(this);
+		Thread t = new Thread(naus, this);
 		t.start();
 	}
 
