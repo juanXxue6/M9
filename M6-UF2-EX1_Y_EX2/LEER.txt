@@ -1,0 +1,2 @@
+la base de datos es la misma para el ex1 y el ex2.
+La tabla de pobalcion solo contiene 2 registros, por lo tanto a la hora de insertar el cp tiene que ser 40000 o 40001
